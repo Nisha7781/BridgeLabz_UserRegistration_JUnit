@@ -99,4 +99,18 @@ public class UserRegistration {
             return "SAD";
         }
     }
+
+    public String isValidEntry()
+    {
+        if (isValidFirstName().equals("HAPPY") && isValidLastName().equals("HAPPY") && isValidEmail().equals("HAPPY")
+                && isValidNumber().equals("HAPPY") && isValidPassword().equals("HAPPY"))
+        {
+            return "HAPPY";
+        }
+        else
+        {
+            return "SAD";
+        }
+    }
+
 }

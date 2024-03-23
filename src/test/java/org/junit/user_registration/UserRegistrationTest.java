@@ -123,6 +123,14 @@ class UserRegistrationTest {
     }
 
     @Test
+    void checkEmail_returnSad()
+    {
+        UserRegistration ur = new UserRegistration("Nisha", "Mali", "abcgmail.com", "91 9182374657", "abcdefgh");
+        String res = ur.isValidEmail();
+        Assertions.assertEquals("SAD", res);
+    }
+
+    @Test
     void checkValidEmails() {
         String[] validEmails = {"abc@yahoo.com", "abc-100@yahoo.com", "abc.100@yahoo.com",
                 "abc111@abc.com", "abc-100@abc.net", "abc.100@abc.com.au",
@@ -147,6 +155,21 @@ class UserRegistrationTest {
             String res = ur.isValidEmail();
             Assertions.assertEquals("SAD", res);
         }
+    }
+
+    //Test For Valid Entry
+    @Test
+    void checkValidEntry() {
+        UserRegistration ur = new UserRegistration("Nisha", "Mali", "abc@gmail.com", "91 9182374657", "aBc@efgh1");
+        String res = ur.isValidEntry();
+        Assertions.assertEquals("HAPPY", res);
+    }
+
+    @Test
+    void checkInvalidEntry() {
+        UserRegistration ur = new UserRegistration("Nisha", "Mali", "abc@gmail.com", "91 9182374657", "abcdefgh");
+        String res = ur.isValidEntry();
+        Assertions.assertEquals("SAD", res);
     }
 }
 
