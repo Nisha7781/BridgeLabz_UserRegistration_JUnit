@@ -101,15 +101,23 @@ class UserRegistrationTest {
     @Test
     void checkPassword_returnHappy()
     {
-        UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","91 82374657", "abcdefgh");
+        UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","91 82374657", "aBcdefgh");
         String res = ur.isValidPassword();
         Assertions.assertEquals("HAPPY", res);
     }
 
     @Test
-    void checkPassword_returnSad()
+    void checkPassword_returnSad1()
     {
-        UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","91 82374657", "abfgh");
+        UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","91 82374657", "abcdefgh");
+        String res = ur.isValidPassword();
+        Assertions.assertEquals("SAD", res);
+    }
+
+    @Test
+    void checkPassword_returnSad2()
+    {
+        UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","91 82374657", "Kabcde");
         String res = ur.isValidPassword();
         Assertions.assertEquals("SAD", res);
     }
