@@ -9,14 +9,17 @@ public class UserRegistration {
     String LastName;
     String Email;
     String Number;
+    String Password;
 
 
-    UserRegistration(String FirstName, String LastName, String Email, String Number)
+
+    UserRegistration(String FirstName, String LastName, String Email, String Number, String Password)
     {
         this.FirstName = FirstName;
         this.LastName = LastName;
         this.Email = Email;
         this.Number = Number;
+        this.Password = Password;
 
     }
 
@@ -71,6 +74,21 @@ public class UserRegistration {
         String regex = "^([0-9]{2} [0-9]{10})$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(Number);
+        if (matcher.matches())
+        {
+            return "HAPPY";
+        }
+        else
+        {
+            return "SAD";
+        }
+    }
+
+    public String isValidPassword()
+    {
+        String regex = "^([a-zA-Z]{8,})$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(Password);
         if (matcher.matches())
         {
             return "HAPPY";

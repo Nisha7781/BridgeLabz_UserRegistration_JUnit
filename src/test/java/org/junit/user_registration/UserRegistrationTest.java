@@ -9,7 +9,7 @@ class UserRegistrationTest {
     @Test
     void checkFirstname_returnHappy()
     {
-        UserRegistration ur = new UserRegistration("Nisha","Mali","abc@gmail.com", "91 9182374657");
+        UserRegistration ur = new UserRegistration("Nisha","Mali","abc@gmail.com", "91 9182374657","abcdefgh");
         String res = ur.isValidFirstName();
         Assertions.assertEquals("HAPPY", res);
     }
@@ -17,7 +17,7 @@ class UserRegistrationTest {
     @Test
     void checkFirstname_returnSad1()
     {
-        UserRegistration ur = new UserRegistration("nisha", "mali", "abc@gmail.com","9182374657");
+        UserRegistration ur = new UserRegistration("nisha", "mali", "abc@gmail.com","9182374657", "abcdefgh");
         String res = ur.isValidFirstName();
         Assertions.assertEquals("SAD", res);
     }
@@ -25,7 +25,7 @@ class UserRegistrationTest {
     @Test
     void checkFirstname_returnSad2()
     {
-        UserRegistration ur = new UserRegistration("ni", "Mali", "abc@gmail.com", "9182374657");
+        UserRegistration ur = new UserRegistration("ni", "Mali", "abc@gmail.com", "9182374657", "abcdefgh");
         String res = ur.isValidFirstName();
         Assertions.assertEquals("SAD", res);
     }
@@ -34,7 +34,7 @@ class UserRegistrationTest {
     @Test
     void checkLastname_returnHappy()
     {
-        UserRegistration ur = new UserRegistration("Nisha","Mali","abc@gmail.com", "91 9182374657");
+        UserRegistration ur = new UserRegistration("Nisha","Mali","abc@gmail.com", "91 9182374657","abcdefgh");
         String res = ur.isValidLastName();
         Assertions.assertEquals("HAPPY", res);
     }
@@ -42,7 +42,7 @@ class UserRegistrationTest {
     @Test
     void checkLastname_returnSad1()
     {
-        UserRegistration ur = new UserRegistration("Nisha", "mali", "abc@gmail.com","9182374657");
+        UserRegistration ur = new UserRegistration("Nisha", "mali", "abc@gmail.com","9182374657","abcdefgh");
         String res = ur.isValidLastName();
         Assertions.assertEquals("SAD", res);
     }
@@ -50,7 +50,7 @@ class UserRegistrationTest {
     @Test
     void checkLastname_returnSad2()
     {
-        UserRegistration ur = new UserRegistration("Nisha", "Ma", "abc@gmail.com","9182374657");
+        UserRegistration ur = new UserRegistration("Nisha", "Ma", "abc@gmail.com","9182374657","abcdefgh");
         String res = ur.isValidLastName();
         Assertions.assertEquals("SAD", res);
     }
@@ -59,7 +59,7 @@ class UserRegistrationTest {
     @Test
     void checkEmail_returnHappy()
     {
-        UserRegistration ur = new UserRegistration("Nisha","Mali","abc@gmail.com", "91 9182374657");
+        UserRegistration ur = new UserRegistration("Nisha","Mali","abc@gmail.com", "91 9182374657","abcdefgh");
         String res = ur.isValidEmail();
         Assertions.assertEquals("HAPPY", res);
     }
@@ -67,7 +67,7 @@ class UserRegistrationTest {
     @Test
     void checkEmail_returnSad()
     {
-        UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","9182374657");
+        UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","9182374657", "abcdefgh");
         String res = ur.isValidEmail();
         Assertions.assertEquals("SAD", res);
     }
@@ -76,7 +76,7 @@ class UserRegistrationTest {
     @Test
     void checkNumber_returnHappy()
     {
-        UserRegistration ur = new UserRegistration("Nisha","Mali","abc@gmail.com", "91 9182374657");
+        UserRegistration ur = new UserRegistration("Nisha","Mali","abc@gmail.com", "91 9182374657", "abcdefgh");
         String res = ur.isValidNumber();
         Assertions.assertEquals("HAPPY", res);
     }
@@ -84,7 +84,7 @@ class UserRegistrationTest {
     @Test
     void checkNumber_returnSad1()
     {
-        UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","9182374657");
+        UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","9182374657", "abcdefgh");
         String res = ur.isValidNumber();
         Assertions.assertEquals("SAD", res);
     }
@@ -92,8 +92,26 @@ class UserRegistrationTest {
     @Test
     void checkNumber_returnSad2()
     {
-        UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","91 82374657");
+        UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","91 82374657", "abcdefgh");
         String res = ur.isValidNumber();
         Assertions.assertEquals("SAD", res);
     }
+
+    //Test to check Password Validity
+    @Test
+    void checkPassword_returnHappy()
+    {
+        UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","91 82374657", "abcdefgh");
+        String res = ur.isValidPassword();
+        Assertions.assertEquals("HAPPY", res);
+    }
+
+    @Test
+    void checkPassword_returnSad()
+    {
+        UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","91 82374657", "abfgh");
+        String res = ur.isValidPassword();
+        Assertions.assertEquals("SAD", res);
+    }
+
 }
