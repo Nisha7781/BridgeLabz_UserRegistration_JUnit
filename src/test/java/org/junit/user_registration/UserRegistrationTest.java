@@ -122,6 +122,14 @@ class UserRegistrationTest {
         Assertions.assertEquals("HAPPY", res);
     }
 
+     @Test
+    void checkEmail_returnSad()
+    {
+        UserRegistration ur = new UserRegistration("Nisha", "Mali", "abcgmail.com", "91 9182374657", "abcdefgh");
+        String res = ur.isValidEmail();
+        Assertions.assertEquals("SAD", res);
+    }
+
     @Test
     void checkEmail_returnSad()
     {
