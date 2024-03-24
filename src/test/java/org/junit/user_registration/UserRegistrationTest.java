@@ -2,6 +2,8 @@ package org.junit.user_registration;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class UserRegistrationTest {
 
@@ -122,14 +124,6 @@ class UserRegistrationTest {
         Assertions.assertEquals("HAPPY", res);
     }
 
-     @Test
-    void checkEmail_returnSad()
-    {
-        UserRegistration ur = new UserRegistration("Nisha", "Mali", "abcgmail.com", "91 9182374657", "abcdefgh");
-        String res = ur.isValidEmail();
-        Assertions.assertEquals("SAD", res);
-    }
-
     @Test
     void checkEmail_returnSad()
     {
@@ -178,6 +172,38 @@ class UserRegistrationTest {
         UserRegistration ur = new UserRegistration("Nisha", "Mali", "abc@gmail.com", "91 9182374657", "abcdefgh");
         String res = ur.isValidEntry();
         Assertions.assertEquals("SAD", res);
+    }
+
+    // Test for Email validity using Parameterized Test
+    @ParameterizedTest
+    @CsvSource({
+            "abc@yahoo.com, HAPPY",
+            "abc-100@yahoo.com, HAPPY",
+            "abc.100@yahoo.com, HAPPY",
+            "abc111@abc.com, HAPPY",
+            "abc-100@abc.net, HAPPY",
+            "abc.100@abc.com.au, HAPPY",
+            "abc@1.com, HAPPY",
+            "abc@gmail.com.com, HAPPY",
+            "abc+100@gmail.com, HAPPY",
+            "abc, SAD",
+            "abc@.com.my, SAD",
+            "abc123@gmail.a, SAD",
+            "abc123@.com, SAD",
+            "abc123@.com.com, SAD",
+            ".abc@abc.com, SAD",
+            "abc()*@gmail.com, SAD",
+            "abc@%*.com, SAD",
+            "abc..2002@gmail.com, SAD",
+            "abc.@gmail.com, SAD",
+            "abc@abc@gmail.com, SAD",
+            "abc@gmail.com.1a, SAD",
+            "abc@gmail.com.aa.au, SAD"
+    })
+    void checkEmailValidity(String email, String expected) {
+        UserRegistration ur = new UserRegistration("Nisha", "Mali", email, "91 9182374657", "abcdefgh");
+        String res = ur.isValidEmail();
+        Assertions.assertEquals(expected, res);
     }
 }
 
