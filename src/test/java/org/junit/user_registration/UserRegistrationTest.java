@@ -7,129 +7,169 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class UserRegistrationTest {
 
-    //Test for Firstname validity
+    // Test for Firstname validity
     @Test
-    void checkFirstname_returnHappy()
-    {
+    void checkFirstname_returnHappy() {
         UserRegistration ur = new UserRegistration("Nisha","Mali","abc@gmail.com", "91 9182374657","abcdefgh");
-        String res = ur.isValidFirstName();
-        Assertions.assertEquals("HAPPY", res);
+        try {
+            ur.isValidFirstName();
+        } catch (CustomValidationException e) {
+            Assertions.fail(e.getMessage());
+        }
     }
 
     @Test
-    void checkFirstname_returnSad1()
-    {
+    void checkFirstname_returnSad1() {
         UserRegistration ur = new UserRegistration("nisha", "mali", "abc@gmail.com","9182374657", "abcdefgh");
-        String res = ur.isValidFirstName();
-        Assertions.assertEquals("SAD", res);
+        try {
+            ur.isValidFirstName();
+            Assertions.fail("Expected CustomValidationException was not thrown");
+        } catch (CustomValidationException e) {
+            Assertions.assertEquals("Invalid first name", e.getMessage());
+        }
     }
 
     @Test
-    void checkFirstname_returnSad2()
-    {
+    void checkFirstname_returnSad2() {
         UserRegistration ur = new UserRegistration("ni", "Mali", "abc@gmail.com", "9182374657", "abcdefgh");
-        String res = ur.isValidFirstName();
-        Assertions.assertEquals("SAD", res);
+        try {
+            ur.isValidFirstName();
+            Assertions.fail("Expected CustomValidationException was not thrown");
+        } catch (CustomValidationException e) {
+            Assertions.assertEquals("Invalid first name", e.getMessage());
+        }
     }
 
-    //Test for Lastname validity
+    // Test for Lastname validity
     @Test
-    void checkLastname_returnHappy()
-    {
+    void checkLastname_returnHappy() {
         UserRegistration ur = new UserRegistration("Nisha","Mali","abc@gmail.com", "91 9182374657","abcdefgh");
-        String res = ur.isValidLastName();
-        Assertions.assertEquals("HAPPY", res);
+        try {
+            ur.isValidLastName();
+        } catch (CustomValidationException e) {
+            Assertions.fail(e.getMessage());
+        }
     }
 
     @Test
-    void checkLastname_returnSad1()
-    {
+    void checkLastname_returnSad1() {
         UserRegistration ur = new UserRegistration("Nisha", "mali", "abc@gmail.com","9182374657","abcdefgh");
-        String res = ur.isValidLastName();
-        Assertions.assertEquals("SAD", res);
+        try {
+            ur.isValidLastName();
+            Assertions.fail("Expected CustomValidationException was not thrown");
+        } catch (CustomValidationException e) {
+            Assertions.assertEquals("Invalid last name", e.getMessage());
+        }
     }
 
     @Test
-    void checkLastname_returnSad2()
-    {
+    void checkLastname_returnSad2() {
         UserRegistration ur = new UserRegistration("Nisha", "Ma", "abc@gmail.com","9182374657","abcdefgh");
-        String res = ur.isValidLastName();
-        Assertions.assertEquals("SAD", res);
+        try {
+            ur.isValidLastName();
+            Assertions.fail("Expected CustomValidationException was not thrown");
+        } catch (CustomValidationException e) {
+            Assertions.assertEquals("Invalid last name", e.getMessage());
+        }
     }
 
-    //Test for Mobile Number validity
+    // Test for Mobile Number validity
     @Test
-    void checkNumber_returnHappy()
-    {
-        UserRegistration ur = new UserRegistration("Nisha","Mali","abc@gmail.com", "91 9182374657", "abcdefgh");
-        String res = ur.isValidNumber();
-        Assertions.assertEquals("HAPPY", res);
+    void checkNumber_returnHappy() {
+        UserRegistration ur = new UserRegistration("Nisha","Mali","abc@gmail.com", "91 9182374657","abcdefgh");
+        try {
+            ur.isValidNumber();
+        } catch (CustomValidationException e) {
+            Assertions.fail(e.getMessage());
+        }
     }
 
     @Test
-    void checkNumber_returnSad1()
-    {
+    void checkNumber_returnSad1() {
         UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","9182374657", "abcdefgh");
-        String res = ur.isValidNumber();
-        Assertions.assertEquals("SAD", res);
+        try {
+            ur.isValidNumber();
+            Assertions.fail("Expected CustomValidationException was not thrown");
+        } catch (CustomValidationException e) {
+            Assertions.assertEquals("Invalid number", e.getMessage());
+        }
     }
 
     @Test
-    void checkNumber_returnSad2()
-    {
+    void checkNumber_returnSad2() {
         UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","91 82374657", "abcdefgh");
-        String res = ur.isValidNumber();
-        Assertions.assertEquals("SAD", res);
+        try {
+            ur.isValidNumber();
+            Assertions.fail("Expected CustomValidationException was not thrown");
+        } catch (CustomValidationException e) {
+            Assertions.assertEquals("Invalid number", e.getMessage());
+        }
     }
 
-    //Test to check Password Validity
+    // Test to check Password Validity
     @Test
-    void checkPassword_returnHappy()
-    {
+    void checkPassword_returnHappy() {
         UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","91 82374657", "aBc@efgh1");
-        String res = ur.isValidPassword();
-        Assertions.assertEquals("HAPPY", res);
+        try {
+            ur.isValidPassword();
+        } catch (CustomValidationException e) {
+            Assertions.fail(e.getMessage());
+        }
     }
 
     @Test
-    void checkPassword_returnSad1()
-    {
+    void checkPassword_returnSad1() {
         UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","91 82374657", "Ab1defgh");
-        String res = ur.isValidPassword();
-        Assertions.assertEquals("SAD", res);
+        try {
+            ur.isValidPassword();
+            Assertions.fail("Expected CustomValidationException was not thrown");
+        } catch (CustomValidationException e) {
+            Assertions.assertEquals("Invalid password", e.getMessage());
+        }
     }
 
     @Test
-    void checkPassword_returnSad2()
-    {
+    void checkPassword_returnSad2() {
         UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","91 82374657", "Kab1cde");
-        String res = ur.isValidPassword();
-        Assertions.assertEquals("SAD", res);
+        try {
+            ur.isValidPassword();
+            Assertions.fail("Expected CustomValidationException was not thrown");
+        } catch (CustomValidationException e) {
+            Assertions.assertEquals("Invalid password", e.getMessage());
+        }
     }
 
     @Test
-    void checkPassword_returnSad3()
-    {
+    void checkPassword_returnSad3() {
         UserRegistration ur = new UserRegistration("Nisha", "mali", "avx.gmail.com","91 82374657", "Kab@1de");
-        String res = ur.isValidPassword();
-        Assertions.assertEquals("SAD", res);
+        try {
+            ur.isValidPassword();
+            Assertions.fail("Expected CustomValidationException was not thrown");
+        } catch (CustomValidationException e) {
+            Assertions.assertEquals("Invalid password", e.getMessage());
+        }
     }
 
     // Test for Email validity
     @Test
-    void checkEmail_returnHappy()
-    {
+    void checkEmail_returnHappy() {
         UserRegistration ur = new UserRegistration("Nisha", "Mali", "abc@gmail.com", "91 9182374657", "abcdefgh");
-        String res = ur.isValidEmail();
-        Assertions.assertEquals("HAPPY", res);
+        try {
+            ur.isValidEmail();
+        } catch (CustomValidationException e) {
+            Assertions.fail(e.getMessage());
+        }
     }
 
     @Test
-    void checkEmail_returnSad()
-    {
+    void checkEmail_returnSad() {
         UserRegistration ur = new UserRegistration("Nisha", "Mali", "abcgmail.com", "91 9182374657", "abcdefgh");
-        String res = ur.isValidEmail();
-        Assertions.assertEquals("SAD", res);
+        try {
+            ur.isValidEmail();
+            Assertions.fail("Expected CustomValidationException was not thrown");
+        } catch (CustomValidationException e) {
+            Assertions.assertEquals("Invalid email", e.getMessage());
+        }
     }
 
     @Test
@@ -140,8 +180,11 @@ class UserRegistrationTest {
 
         for (String email : validEmails) {
             UserRegistration ur = new UserRegistration("Nisha", "Mali", email, "91 9182374657", "abcdefgh");
-            String res = ur.isValidEmail();
-            Assertions.assertEquals("HAPPY", res);
+            try {
+                ur.isValidEmail();
+            } catch (CustomValidationException e) {
+                Assertions.fail(e.getMessage());
+            }
         }
     }
 
@@ -154,27 +197,37 @@ class UserRegistrationTest {
 
         for (String email : invalidEmails) {
             UserRegistration ur = new UserRegistration("Nisha", "Mali", email, "91 9182374657", "abcdefgh");
-            String res = ur.isValidEmail();
-            Assertions.assertEquals("SAD", res);
+            try {
+                ur.isValidEmail();
+                Assertions.fail("Expected CustomValidationException was not thrown");
+            } catch (CustomValidationException e) {
+                Assertions.assertEquals("Invalid email", e.getMessage());
+            }
         }
     }
 
-    //Test For Valid Entry
+    // Test For Valid Entry
     @Test
     void checkValidEntry() {
         UserRegistration ur = new UserRegistration("Nisha", "Mali", "abc@gmail.com", "91 9182374657", "aBc@efgh1");
-        String res = ur.isValidEntry();
-        Assertions.assertEquals("HAPPY", res);
+        try {
+            ur.isValidEntry();
+        } catch (CustomValidationException e) {
+            Assertions.fail(e.getMessage());
+        }
     }
 
     @Test
     void checkInvalidEntry() {
         UserRegistration ur = new UserRegistration("Nisha", "Mali", "abc@gmail.com", "91 9182374657", "abcdefgh");
-        String res = ur.isValidEntry();
-        Assertions.assertEquals("SAD", res);
+        try {
+            ur.isValidEntry();
+            Assertions.fail("Expected CustomValidationException was not thrown");
+        } catch (CustomValidationException e) {
+            org.junit.jupiter.api.Assertions.assertEquals("Invalid entry", e.getMessage());
+        }
     }
 
-    // Test for Email validity using Parameterized Test
     @ParameterizedTest
     @CsvSource({
             "abc@yahoo.com, HAPPY",
@@ -202,8 +255,13 @@ class UserRegistrationTest {
     })
     void checkEmailValidity(String email, String expected) {
         UserRegistration ur = new UserRegistration("Nisha", "Mali", email, "91 9182374657", "abcdefgh");
-        String res = ur.isValidEmail();
-        Assertions.assertEquals(expected, res);
+        try {
+            ur.isValidEmail();
+            Assertions.assertEquals("HAPPY", expected);
+        } catch (CustomValidationException e) {
+            Assertions.assertEquals("Invalid email", e.getMessage());
+            Assertions.assertEquals("SAD", expected);
+        }
     }
-}
 
+}
