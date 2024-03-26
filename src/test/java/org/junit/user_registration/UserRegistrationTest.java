@@ -224,7 +224,7 @@ class UserRegistrationTest {
             ur.isValidEntry();
             Assertions.fail("Expected CustomValidationException was not thrown");
         } catch (CustomValidationException e) {
-            org.junit.jupiter.api.Assertions.assertEquals("Invalid entry", e.getMessage());
+            Assertions.assertEquals("Invalid entry", e.getMessage());
         }
     }
 
@@ -258,7 +258,8 @@ class UserRegistrationTest {
         try {
             ur.isValidEmail();
             Assertions.assertEquals("HAPPY", expected);
-        } catch (CustomValidationException e) {
+        }
+        catch (CustomValidationException e) {
             Assertions.assertEquals("Invalid email", e.getMessage());
             Assertions.assertEquals("SAD", expected);
         }
